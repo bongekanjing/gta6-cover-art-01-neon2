@@ -1,0 +1,225 @@
+/* Neon Coast Cover Studio — editor chrome.
+   Dark dusk palette with neon pink / teal accents; the cover itself is
+   drawn on canvas, this stylesheet only dresses the editor around it. */
+
+:root {
+  --bg: #0d0716;
+  --bg-soft: #170d29;
+  --panel: #1c1032;
+  --line: #3a2358;
+  --text: #f4eefc;
+  --muted: #b9a6d6;
+  --pink: #ff4d9d;
+  --teal: #2ee6d6;
+  --gold: #ffc46b;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  background: radial-gradient(1200px 500px at 80% -10%, #3a165e 0%, transparent 60%),
+    radial-gradient(900px 420px at 0% 0%, #123a4a 0%, transparent 55%),
+    var(--bg);
+  color: var(--text);
+  font-family: "Segoe UI", system-ui, -apple-system, Arial, sans-serif;
+  min-height: 100vh;
+}
+
+.topbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  flex-wrap: wrap;
+  padding: 14px 20px;
+  border-bottom: 1px solid var(--line);
+  background: rgba(13, 7, 22, 0.8);
+}
+
+.brand { display: flex; align-items: center; gap: 12px; }
+
+.brand-mark {
+  display: grid;
+  place-items: center;
+  width: 46px;
+  height: 46px;
+  border-radius: 10px;
+  font-weight: 900;
+  font-size: 19px;
+  letter-spacing: 0.04em;
+  color: #160a24;
+  background: linear-gradient(135deg, var(--gold), var(--pink) 55%, var(--teal));
+  box-shadow: 0 0 22px rgba(255, 77, 157, 0.45);
+}
+
+.brand h1 {
+  margin: 0;
+  font-size: 21px;
+  letter-spacing: 0.02em;
+}
+
+.brand p { margin: 2px 0 0; color: var(--muted); font-size: 13px; }
+
+.top-actions { display: flex; gap: 8px; }
+
+button {
+  font: inherit;
+  color: var(--text);
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: 9px;
+  padding: 8px 13px;
+  cursor: pointer;
+}
+
+button:hover:not(:disabled) { border-color: var(--pink); }
+button:disabled { opacity: 0.45; cursor: default; }
+button:focus-visible, .file-btn:focus-visible, .slot:focus-visible,
+input:focus-visible, select:focus-visible {
+  outline: 2px solid var(--teal);
+  outline-offset: 2px;
+}
+
+button.primary {
+  background: linear-gradient(135deg, var(--pink), #ff7a3d);
+  border-color: transparent;
+  color: #fff;
+  font-weight: 700;
+}
+
+.layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 340px;
+  gap: 20px;
+  padding: 20px;
+  max-width: 1280px;
+  margin: 0 auto;
+}
+
+.stage-wrap { min-width: 0; }
+
+#preview {
+  display: block;
+  width: 100%;
+  max-width: 720px;
+  margin: 0 auto;
+  border-radius: 6px;
+  box-shadow: 0 18px 50px rgba(0, 0, 0, 0.6), 0 0 0 1px var(--line);
+  cursor: crosshair;
+  background: #241238;
+}
+
+.size-label { text-align: center; font-weight: 700; margin: 12px 0 2px; }
+.hint { text-align: center; color: var(--muted); font-size: 13px; margin: 0; }
+
+.panel {
+  background: var(--bg-soft);
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  padding: 6px 16px 16px;
+  height: fit-content;
+}
+
+.group { padding: 12px 0; border-bottom: 1px solid var(--line); }
+.group:last-child { border-bottom: 0; }
+
+.group h2 {
+  margin: 0 0 8px;
+  font-size: 14px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--gold);
+}
+
+.muted { color: var(--muted); font-size: 13px; margin: 4px 0 10px; }
+
+.row { display: flex; gap: 8px; flex-wrap: wrap; }
+
+.file-btn {
+  display: inline-block;
+  padding: 8px 13px;
+  border-radius: 9px;
+  background: linear-gradient(135deg, var(--teal), #2e9be6);
+  color: #06222b;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.slots {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+  margin-top: 10px;
+}
+
+.slot {
+  border: 1px dashed var(--line);
+  border-radius: 9px;
+  padding: 10px 8px;
+  text-align: center;
+  font-size: 13px;
+  color: var(--muted);
+  cursor: pointer;
+}
+
+.slot.filled {
+  border-style: solid;
+  border-color: var(--teal);
+  color: var(--text);
+  background: rgba(46, 230, 214, 0.08);
+}
+
+.chips { display: flex; flex-wrap: wrap; gap: 7px; }
+
+.chips button { padding: 7px 10px; font-size: 13px; border-radius: 999px; }
+.chips button.active {
+  border-color: var(--pink);
+  background: rgba(255, 77, 157, 0.16);
+  box-shadow: 0 0 12px rgba(255, 77, 157, 0.25);
+}
+
+.dot {
+  display: inline-block;
+  width: 11px;
+  height: 11px;
+  border-radius: 50%;
+  margin-right: 6px;
+  vertical-align: -1px;
+}
+
+.field { display: block; font-size: 13px; color: var(--muted); margin: 8px 0; }
+.field input[type="text"], .field select {
+  display: block;
+  width: 100%;
+  margin-top: 4px;
+  padding: 9px 10px;
+  border-radius: 9px;
+  border: 1px solid var(--line);
+  background: var(--bg);
+  color: var(--text);
+  font: inherit;
+}
+.field input[type="range"] { display: block; width: 100%; accent-color: var(--pink); }
+
+.foot {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 20px 26px;
+  color: var(--muted);
+  font-size: 12px;
+}
+
+/* Screenshot scenes: full-bleed cover, no editor chrome. */
+body.shot-cover { background: #000; }
+body.shot-cover .topbar,
+body.shot-cover .panel,
+body.shot-cover .foot,
+body.shot-cover .size-label,
+body.shot-cover .hint { display: none; }
+body.shot-cover .layout { display: block; padding: 0; margin: 0; max-width: none; }
+body.shot-cover .stage-wrap { margin: 0; }
+
+@media (max-width: 860px) {
+  .layout { grid-template-columns: 1fr; }
+}
